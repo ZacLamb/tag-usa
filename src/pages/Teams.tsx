@@ -2,40 +2,47 @@ import { useParams } from 'react-router-dom'
 import PageHero from '../components/PageHero'
 import { C } from '../constants'
 
-const teamData: Record<string, { title: string; subtitle: string; desc: string }> = {
+const HERO = 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=1600&q=85'
+
+const teamData: Record<string, { title: string; subtitle: string; desc: string; details: string[] }> = {
   'jo-teams': {
-    title: 'JO Teams (Level 2–10)',
+    title: 'JO Teams — Level 2–10',
     subtitle: 'Junior Olympic Competitive Gymnastics',
-    desc: 'Our USAG Junior Olympic teams compete at local, state, and national levels. Athletes are placed in appropriate levels based on skill and age. TAG USA has consistently produced state and national qualifiers — our championship banner wall tells the story.',
+    desc: 'Our USAG Junior Olympic program covers Levels 2 through 10 and competes at local, state, and national levels. Athletes are placed in the appropriate level based on skill assessment and age. TAG USA has consistently produced state qualifiers and national qualifiers — our championship banner wall tells the story of years of athlete excellence.',
+    details: ['USAG-sanctioned competition', 'Levels 2 through 10', 'Local, state & national meets', 'Structured year-round training', 'Athlete skill assessments', 'Individual development plans'],
   },
   xcel: {
     title: 'XCel Team',
     subtitle: 'Flexible Competitive Gymnastics',
-    desc: 'The USAG XCel program offers a flexible, fun competitive experience. Multiple levels from Bronze to Platinum allow athletes to compete at the appropriate skill level with a less intensive training commitment than JO.',
+    desc: 'The USAG XCel program is designed for athletes who want a fun, meaningful competitive experience with a more flexible training schedule. Multiple levels from Bronze through Platinum allow athletes to compete at exactly the right skill level without the rigorous time commitment of the Junior Olympic track.',
+    details: ['Bronze through Platinum levels', 'USAG-sanctioned competition', 'More flexible training hours', 'Great for multi-sport athletes', 'Skill-appropriate placement', 'Year-round program'],
   },
   elite: {
     title: 'JO Elite',
-    subtitle: 'The Highest Level of Junior Olympic Competition',
-    desc: 'Our elite-level program is for our most advanced athletes competing at the highest JO levels, with the potential to reach national and international competition.',
+    subtitle: 'The Pinnacle of Junior Olympic Competition',
+    desc: 'Our Elite program is for our most advanced athletes who are competing at the highest levels of USAG Junior Olympic gymnastics. Elite athletes have demonstrated exceptional commitment, talent, and readiness for national-level competition and beyond.',
+    details: ['Highest JO competition level', 'National meet eligibility', 'Advanced coaching staff', 'Intensive training program', 'Performance goal planning', 'Pathway to collegiate gymnastics'],
   },
   'power-tumbling': {
     title: 'Power Tumbling Team',
     subtitle: 'Competitive Tumbling Specialists',
-    desc: 'Specialized tumbling team competing on the tumbling strip at USAG-sanctioned competitions. Athletes develop powerful, precise tumbling passes through dedicated training.',
+    desc: 'Our Power Tumbling team competes on the tumbling strip at USAG-sanctioned events. Athletes develop powerful, precise passes through dedicated technical training focused on speed, height, and execution. A great fit for athletes who love floor work and dynamic movement.',
+    details: ['USAG power tumbling competition', 'Tumbling strip specialization', 'Speed and height development', 'Technique-focused coaching', 'Open to boys and girls', 'All competitive levels'],
   },
   'boys-preteam': {
     title: 'Boys Gymnastics Pre-TEAM',
-    subtitle: 'Building the Next Generation of Boys Gymnasts',
-    desc: 'Our Boys Pre-TEAM program identifies and develops talented young male gymnasts, preparing them for full competitive team participation.',
+    subtitle: 'Developing the Next Generation',
+    desc: 'Our Boys Pre-TEAM identifies and develops talented young male gymnasts and prepares them for full competitive team participation. Athletes in this program receive structured coaching in all men\'s gymnastics events with an eye toward competitive development.',
+    details: ['All men\'s gymnastics events', 'Strength & skill development', 'Structured competitive preparation', 'Pathway to full team membership', 'Age-appropriate progressions', 'Expert male gymnastics coaching'],
   },
 }
 
 const allTeams = [
-  'JO Level 2–10 (Girls Gymnastics)',
-  'JO Elite',
-  'XCel (Bronze through Platinum)',
-  'Power Tumbling TEAM',
-  'Boys Gymnastics Pre-TEAM',
+  { label: 'JO Level 2–10',         path: '/teams/jo-teams' },
+  { label: 'JO Elite',              path: '/teams/elite' },
+  { label: 'XCel (Bronze–Platinum)', path: '/teams/xcel' },
+  { label: 'Power Tumbling TEAM',   path: '/teams/power-tumbling' },
+  { label: 'Boys Gymnastics Pre-TEAM', path: '/teams/boys-preteam' },
 ]
 
 export default function Teams() {
@@ -44,50 +51,107 @@ export default function Teams() {
 
   return (
     <div>
-      <PageHero title={data.title} subtitle={data.subtitle} />
-      <div style={{ maxWidth: 960, margin: '0 auto', padding: '60px 24px' }}>
+      <PageHero title={data.title} subtitle={data.subtitle} image={HERO} />
 
-        <p style={{ fontSize: 16, color: C.textGray, lineHeight: 1.8, marginBottom: 40 }}>
-          {data.desc}
-        </p>
+      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '72px 24px' }}>
+        <div className="two-col" style={{ display: 'flex', gap: 56, alignItems: 'flex-start' }}>
 
-        <div style={{ background: C.offWhite, padding: 32, marginBottom: 32 }}>
-          <h3 style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 800, color: C.navy, fontSize: '1.4rem', marginBottom: 16 }}>
-            All TAG USA Competitive Teams:
-          </h3>
-          {allTeams.map((t, i) => (
-            <div key={i} style={{ display: 'flex', gap: 10, marginBottom: 8, fontSize: 15, color: C.textDark }}>
-              <span style={{ color: C.red, fontWeight: 700 }}>▶</span>{t}
+          {/* Main content */}
+          <div style={{ flex: 1 }}>
+            <div style={{ width: 36, height: 2, background: C.red, marginBottom: 16 }} />
+            <p style={{ fontSize: 16, color: '#555', lineHeight: 1.85, marginBottom: 36 }}>
+              {data.desc}
+            </p>
+
+            <h3 style={{
+              fontFamily: "'Barlow Condensed', sans-serif",
+              fontWeight: 800, fontSize: '1.2rem',
+              color: C.navy, letterSpacing: 1,
+              textTransform: 'uppercase', marginBottom: 16,
+            }}>Program Highlights</h3>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2, marginBottom: 40 }}>
+              {data.details.map((d, i) => (
+                <div key={i} style={{
+                  background: i % 2 === 0 ? '#f7f8fc' : '#fff',
+                  border: '1px solid #eaeaea',
+                  padding: '14px 18px',
+                  display: 'flex', gap: 10, alignItems: 'center',
+                  fontSize: 14, color: '#444',
+                }}>
+                  <div style={{ width: 5, height: 5, background: C.red, borderRadius: '50%', flexShrink: 0 }} />
+                  {d}
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(240px,1fr))', gap: 24, marginBottom: 40 }}>
-          {[
-            { icon: '🏅', title: 'State Qualifiers',     desc: 'TAG USA athletes regularly qualify at the state level across multiple competitive disciplines.' },
-            { icon: '🏆', title: 'National Qualifiers',  desc: 'We have produced numerous USA national qualifiers and national team members over the years.' },
-            { icon: '⭐', title: 'Year-Round Training',  desc: 'Our competitive teams train year-round with structured periodization for peak competition performance.' },
-            { icon: '👨‍🏫', title: 'Expert Coaching',     desc: 'Experienced coaches with decades of competitive gymnastics experience at every level.' },
-          ].map((item, i) => (
-            <div key={i} style={{ padding: 24, border: `1px solid ${C.lightGray}`, borderTop: `4px solid ${i % 2 === 0 ? C.red : C.navy}`, textAlign: 'center' }}>
-              <div style={{ fontSize: 40, marginBottom: 12 }}>{item.icon}</div>
-              <h4 style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 800, color: C.navy, fontSize: '1.1rem', marginBottom: 8 }}>{item.title}</h4>
-              <p style={{ fontSize: 14, color: C.textGray, lineHeight: 1.65 }}>{item.desc}</p>
+            <h3 style={{
+              fontFamily: "'Barlow Condensed', sans-serif",
+              fontWeight: 800, fontSize: '1.2rem',
+              color: C.navy, letterSpacing: 1,
+              textTransform: 'uppercase', marginBottom: 16,
+            }}>All TAG USA Competitive Teams</h3>
+            <div style={{ marginBottom: 40 }}>
+              {allTeams.map((t, i) => (
+                <a key={i} href={t.path} style={{
+                  display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                  padding: '13px 0',
+                  borderBottom: '1px solid #eee',
+                  fontFamily: "'Barlow', sans-serif",
+                  fontWeight: 600, fontSize: 14,
+                  color: team === t.path.split('/').pop() ? C.red : C.navy,
+                  transition: 'color 0.2s',
+                }}>
+                  {t.label}
+                  <span style={{ fontSize: 12, color: '#bbb' }}>→</span>
+                </a>
+              ))}
             </div>
-          ))}
-        </div>
-
-        <div style={{ background: C.navy, color: '#fff', padding: 40, textAlign: 'center' }}>
-          <div style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontSize: '1.8rem', marginBottom: 8 }}>
-            Schedule a Team Tryout
           </div>
-          <p style={{ color: 'rgba(255,255,255,0.6)', marginBottom: 20, fontSize: 15 }}>
-            Call us to discuss your athlete's potential and set up a tryout session!
-          </p>
-          <a href="tel:9543849191" style={{
-            fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900,
-            fontSize: '2.2rem', color: C.red, display: 'block',
-          }}>954-384-9191</a>
+
+          {/* Sidebar CTA */}
+          <div style={{ flexShrink: 0, width: 300 }}>
+            <div style={{ background: C.navy, padding: 32, marginBottom: 16 }}>
+              <div style={{ width: 28, height: 2, background: C.red, marginBottom: 14 }} />
+              <h3 style={{
+                fontFamily: "'Barlow Condensed', sans-serif",
+                fontWeight: 900, fontSize: '1.6rem',
+                color: '#fff', marginBottom: 10,
+              }}>Schedule a Tryout</h3>
+              <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: 13, lineHeight: 1.7, marginBottom: 20 }}>
+                Call us to discuss your athlete's experience and schedule an evaluation session with one of our coaches.
+              </p>
+              <a href="tel:9543849191" style={{
+                fontFamily: "'Barlow Condensed', sans-serif",
+                fontWeight: 900, fontSize: '1.8rem',
+                color: C.red, display: 'block', marginBottom: 16,
+              }}>954-384-9191</a>
+              <a href="tel:9543849191" className="btn-red" style={{ display: 'block', textAlign: 'center' }}>
+                Call Now
+              </a>
+            </div>
+
+            <div style={{ background: '#f7f8fc', padding: 24, border: '1px solid #eaeaea' }}>
+              <div style={{
+                fontFamily: "'Barlow Condensed', sans-serif",
+                fontWeight: 800, fontSize: '0.85rem',
+                color: C.navy, letterSpacing: 2,
+                textTransform: 'uppercase', marginBottom: 12,
+              }}>What to Expect</div>
+              {[
+                'Skill-level assessment',
+                'Coach Q&A session',
+                'Class / team placement',
+                'Schedule & pricing review',
+              ].map((item, i) => (
+                <div key={i} style={{
+                  display: 'flex', gap: 8, fontSize: 13, color: '#555',
+                  padding: '7px 0', borderBottom: '1px solid #eee',
+                }}>
+                  <span style={{ color: C.red, fontWeight: 700, flexShrink: 0 }}>✓</span>{item}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>

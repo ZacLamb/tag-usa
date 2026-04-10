@@ -8,13 +8,16 @@ import Classes         from './pages/Classes'
 import Camps           from './pages/Camps'
 import Aftercare       from './pages/Aftercare'
 import Teams           from './pages/Teams'
-import TheGym          from './pages/TheGym'
-import BirthdayParties from './pages/BirthdayParties'
-import OpenGym         from './pages/OpenGym'
-import Gallery         from './pages/Gallery'
 import Blog            from './pages/Blog'
-import Contact         from './pages/Contact'
-import NotFound        from './pages/NotFound'
+
+import {
+  TheGym,
+  BirthdayParties,
+  OpenGym,
+  Gallery,
+  Contact,
+  NotFound,
+} from './pages/OtherPages'
 
 function ScrollToTop() {
   const { pathname } = useLocation()

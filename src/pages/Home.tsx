@@ -1,372 +1,585 @@
 import { Link } from 'react-router-dom'
 import { C } from '../constants'
 
-// ── data ──────────────────────────────────────────────────────────────────────
-const quickLinks1 = [
-  { label: 'Classes',   emoji: '🤸', to: '/classes' },
-  { label: 'Camps',     emoji: '⛺', to: '/classes/camps' },
-  { label: 'Birthdays', emoji: '🎂', to: '/birthday-parties' },
+// ── Unsplash photo URLs (gymnastics / athletics stock) ────────────────────────
+const PHOTOS = {
+  hero:       'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1600&q=85',
+  strip1:     'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?auto=format&fit=crop&w=600&q=80',
+  strip2:     'https://images.unsplash.com/photo-1566438480900-0609be27a4be?auto=format&fit=crop&w=600&q=80',
+  strip3:     'https://images.unsplash.com/photo-1547347298-4074fc3086f0?auto=format&fit=crop&w=600&q=80',
+  strip4:     'https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=600&q=80',
+  strip5:     'https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?auto=format&fit=crop&w=600&q=80',
+  classes:    'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=700&q=80',
+  camps:      'https://images.unsplash.com/photo-1594882645126-14ac19a0f2c4?auto=format&fit=crop&w=700&q=80',
+  birthday:   'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=700&q=80',
+  aftercare:  'https://images.unsplash.com/photo-1546483875-ad9014c88eba?auto=format&fit=crop&w=700&q=80',
+  rec:        'https://images.unsplash.com/photo-1571019613576-2b22c76fd955?auto=format&fit=crop&w=700&q=80',
+  shuttle:    'https://images.unsplash.com/photo-1519340333755-56e9c1d04579?auto=format&fit=crop&w=900&q=80',
+}
+
+const stripPhotos = [
+  { src: PHOTOS.strip1, label: 'Classes & Training' },
+  { src: PHOTOS.strip2, label: 'Competitive Teams' },
+  { src: PHOTOS.strip3, label: 'Gymnastics' },
+  { src: PHOTOS.strip4, label: 'Fitness & Fun' },
+  { src: PHOTOS.strip5, label: 'Aftercare' },
 ]
-const quickLinks2 = [
-  { label: 'Afterschool\nShuttle Pick Up', emoji: '🚐', to: '/classes/aftercare' },
-  { label: 'Competitive\nTeams',           emoji: '🏆', to: '/teams/jo-teams' },
-  { label: 'Open Gym',                     emoji: '🏅', to: '/open-gym' },
+
+const services = [
+  {
+    title: 'Classes',
+    img: PHOTOS.classes,
+    to: '/classes',
+    desc: 'Recreational classes for all ages — from FREE baby classes to advanced competitive preparation. Weekday mornings, afternoons, and Saturdays.',
+    tag: 'All Ages',
+  },
+  {
+    title: 'Sports Camps',
+    img: PHOTOS.camps,
+    to: '/classes/camps',
+    desc: 'Full-day camps for Summer, school days off, Thanksgiving, Winter Break, and Spring Break. Themed weeks your kids will love.',
+    tag: 'Ages 4–15',
+  },
+  {
+    title: 'Birthday Parties',
+    img: PHOTOS.birthday,
+    to: '/birthday-parties',
+    desc: 'The entire gym is yours — bars, beams, trampolines, pits, and inflatables. Two private party rooms and two dedicated coaches.',
+    tag: 'Sat & Sun',
+  },
+  {
+    title: 'Afterschool Shuttle',
+    img: PHOTOS.aftercare,
+    to: '/classes/aftercare',
+    desc: 'Van pickup from school, team coaching, homework time, and open gym. Van Pick-up $495/mo · Parent Drop-off $370/mo.',
+    tag: 'School Year',
+  },
 ]
-const strip = [
-  { bg: '#2a4a3a', emoji: '🤸‍♀️', label: 'Classes' },
-  { bg: '#1a3a4a', emoji: '🏅',  label: 'Competitions' },
-  { bg: '#c2185b', emoji: '🎀',  label: 'Cheer' },
-  { bg: '#1a3a5a', emoji: '🏟️', label: 'Facility' },
-  { bg: '#2a2a4a', emoji: '🚐',  label: 'Aftercare Van' },
+
+const stats = [
+  { number: '85+',    label: 'Classes Weekly' },
+  { number: '3',      label: 'Competitive Team Levels' },
+  { number: '20+',    label: 'Years of Excellence' },
+  { number: '1000s',  label: 'Athletes Trained' },
 ]
+
 const recClasses = [
   'FREE Baby Tumblers & Mommy (6 weeks to walking)',
-  'Parent & Me (age 1) and Tiny Tots (age 1.5–2 yrs)',
+  'Parent & Me (age 1)',
+  'Tiny Tots (age 1.5–2 yrs)',
   'Preschool (3–4 yr olds)',
   'Girls Beginner Intro (age 4–5)',
-  'Girls Beginner 2 (5–6 yr olds) and Girls Beginner 3 (ages 7–9)',
+  'Girls Beginner 2 & 3 (ages 5–9)',
   'Boys Beginner Gymnastics (ages 4–5)',
   'Coed Trampoline & Tumbling (ages 6–15)',
   'Girls Intermediate or Advanced',
   'Girls Preteam and Junior Team',
-  'Power Tumbling for Intermediate & Advanced (ages 8–16)',
+  'Power Tumbling – Intermediate & Advanced (ages 8–16)',
   'Beginner Cheerleading & Stunts',
 ]
-const socialCards = [
-  { bg: '#111', emoji: '🏆', title: 'START LEARNING TODAY', sub: '10 Week Sessions — Newborns & up' },
-  { bg: C.red,  emoji: '📋', title: 'TRYOUTS — Aug 13th',   sub: 'Open to all who missed summer tryouts!' },
-  { bg: '#e91e8c', emoji: '👑', title: 'WEDNESDAY — Once upon a glam!', sub: 'Princesses sparkle with hair & nails' },
-  { bg: '#111', emoji: '🍝', title: 'WEDNESDAY — Spaghetti & Meatballs', sub: 'Hands-on Italian cooking experience' },
-  { bg: '#7b1fa2', emoji: '🎀', title: 'WEDNESDAY — Dreamhouse Pajama Party!', sub: 'Pillows, popcorn & PJs all day!' },
-]
 
-// ── component ─────────────────────────────────────────────────────────────────
 export default function Home() {
   return (
     <div>
 
-      {/* HERO */}
+      {/* ── HERO ─────────────────────────────────────────────────────── */}
       <section style={{
-        background: `linear-gradient(135deg,${C.maroon} 0%,#3d0808 58%,#1a1a1a 100%)`,
-        minHeight: '88vh', display: 'flex', alignItems: 'center',
-        position: 'relative', overflow: 'hidden',
+        background: `linear-gradient(105deg, rgba(10,16,40,0.93) 0%, rgba(10,16,40,0.78) 55%, rgba(10,16,40,0.55) 100%), url(${PHOTOS.hero}) center 30%/cover no-repeat`,
+        minHeight: '90vh',
+        display: 'flex',
+        alignItems: 'center',
       }}>
-        {/* bg banner texture */}
         <div style={{
-          position: 'absolute', top: 0, right: 0, width: '36%', height: '100%',
-          display: 'flex', flexWrap: 'wrap', gap: 4, padding: 8,
-          overflow: 'hidden', pointerEvents: 'none',
+          maxWidth: 1200,
+          margin: '0 auto',
+          padding: '80px 40px',
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: 48,
+          alignItems: 'center',
+          width: '100%',
         }}>
-          {Array.from({ length: 24 }).map((_, i) => (
-            <div key={i} style={{
-              background: 'rgba(255,255,255,0.05)', borderRadius: 3,
-              padding: '5px 9px', fontSize: 8,
-              color: 'rgba(255,255,255,0.2)', fontWeight: 700,
-              whiteSpace: 'nowrap', fontFamily: "'Barlow Condensed',sans-serif",
+
+          {/* Left copy */}
+          <div style={{ flex: '1 1 480px' }}>
+            <div style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 10,
+              background: C.red,
+              padding: '5px 14px 5px 10px',
+              marginBottom: 20,
             }}>
-              {['ALL STAR TEAM 2017','NATIONAL FLORIDA 2016','TEAM ALL STAR 2016','National Qualifier 2016','NATIONAL QUALIFIER 2015','2014-15 USA National Team','USA National Qualifier 2014'][i % 7]}
+              <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#fff' }} />
+              <span style={{
+                fontFamily: "'Barlow Condensed', sans-serif",
+                fontWeight: 700, fontSize: 11,
+                color: '#fff', letterSpacing: 2.5,
+                textTransform: 'uppercase',
+              }}>New Classes Now Enrolling</span>
             </div>
-          ))}
-        </div>
 
-        <div style={{
-          maxWidth: 1200, margin: '0 auto', padding: '56px 24px',
-          display: 'flex', flexWrap: 'wrap', gap: 40, alignItems: 'center',
-          position: 'relative', zIndex: 2, width: '100%',
-        }}>
-
-          {/* LEFT */}
-          <div style={{ flex: '1 1 460px' }}>
             <h1 style={{
-              fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900,
-              fontSize: 'clamp(2.4rem,6vw,4.4rem)', color: '#fff', lineHeight: 1, marginBottom: 14,
-            }}>TAG <span style={{ color: C.red }}>USA</span> GYMNASTICS</h1>
-            <div style={{ width: 80, height: 3, background: C.red, marginBottom: 20 }} />
+              fontFamily: "'Barlow Condensed', sans-serif",
+              fontWeight: 900,
+              fontSize: 'clamp(2.8rem, 7vw, 5rem)',
+              color: '#fff',
+              lineHeight: 0.95,
+              marginBottom: 20,
+              letterSpacing: 1,
+            }}>
+              TAG <span style={{ color: C.red }}>USA</span><br />
+              GYMNASTICS
+            </h1>
 
             <p style={{
-              fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 700,
-              fontSize: '1.3rem', color: '#fff', marginBottom: 8,
-            }}>Welcome to TAG USA Gymnastics Cheer and Trampoline</p>
-
-            <p style={{ color: '#ccc', fontSize: 15, lineHeight: 1.65, marginBottom: 26 }}>
-              We are South Florida's <strong style={{ color: '#fff' }}>POPULAR</strong> and{' '}
-              <strong style={{ color: '#fff' }}>FAMOUS</strong> destination for youth classes and
-              competitive team gymnastics training!
+              fontFamily: "'Barlow', sans-serif",
+              fontWeight: 400,
+              fontSize: 16,
+              color: 'rgba(255,255,255,0.72)',
+              lineHeight: 1.75,
+              marginBottom: 12,
+              maxWidth: 500,
+            }}>
+              South Florida's premier destination for youth gymnastics, trampoline, and cheer. Recreational classes for all ages — from 6 weeks to competitive elite.
             </p>
 
-            {[
-              { label: 'next SPORTS CAMP:',  val: 'Sept 23, Oct 2, Oct 13, Oct 20',                                                                                                                     valC: '#ddd' },
-              { label: 'CLASSES:',           val: 'Baby Tumblers, Tiny Tots, Preschool, Girls Beginner, Boys Beginner, Coed Trampoline, Girls Intermediate, Girls Advanced, Pre-Team, Acro Power Tumbling, Beginner Cheer', valC: C.cyan },
-              { label: 'COMPETITIVE TEAMS:', val: 'JO L2-10, JO Elite, and XCel',                                                                                                                        valC: '#ddd' },
-              { label: 'BIRTHDAY PARTIES:',  val: 'Saturday and Sunday options',                                                                                                                          valC: '#ddd' },
-              { label: 'OPEN GYM:',          val: 'every Saturday Night 6:30–10pm',                                                                                                                       valC: '#ddd' },
-              { label: 'SCHOOL AFTERCARE:',  val: 'Van pickup or Parent drop off',                                                                                                                         valC: '#ddd' },
-            ].map(row => (
-              <div key={row.label} style={{ marginBottom: 9 }}>
-                <span style={{
-                  fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 800,
-                  fontSize: '0.95rem', color: '#fff',
-                }}>{row.label} </span>
-                <span style={{ color: row.valC, fontSize: 14 }}>{row.val}</span>
-              </div>
-            ))}
-
-            <div style={{ marginTop: 20, marginBottom: 4, fontSize: 15, color: '#fff' }}>
-              <strong>Visit and tour</strong>{' '}
-              <span style={{ color: '#ccc' }}>to see what makes our gym so <strong style={{ color: '#fff' }}>SPECTACULAR</strong>!</span>
-            </div>
-            <div style={{ color: '#ccc', fontSize: 15, marginBottom: 28 }}>
-              Please call us for information:{' '}
-              <a href="tel:9543849191" style={{ color: C.cyan, fontWeight: 700 }}>954-384-9191</a>
-            </div>
-
-            {/* Quick-link icon buttons row 1 */}
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginBottom: 10 }}>
-              {quickLinks1.map(item => (
-                <Link key={item.label} to={item.to} style={{
-                  background: C.red, color: '#fff', padding: '10px 18px',
-                  fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 700, fontSize: 15,
-                  display: 'flex', flexDirection: 'column', alignItems: 'center',
-                  gap: 4, minWidth: 88, textAlign: 'center',
-                }}>
-                  <span style={{ fontSize: 22 }}>{item.emoji}</span>
-                  {item.label}
-                </Link>
+            <div style={{ marginBottom: 32 }}>
+              {[
+                { label: 'Classes', val: 'Baby Tumblers through Advanced — all levels welcome' },
+                { label: 'Competitive Teams', val: 'JO Level 2–10, JO Elite, XCel, Power Tumbling' },
+                { label: 'Open Gym', val: 'Every Saturday Night 6:30–10:00pm' },
+              ].map(row => (
+                <div key={row.label} style={{ display: 'flex', gap: 10, marginBottom: 8, alignItems: 'baseline' }}>
+                  <div style={{ width: 5, height: 5, borderRadius: '50%', background: C.red, flexShrink: 0, marginTop: 6 }} />
+                  <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.85)' }}>
+                    <strong style={{ color: '#fff', fontWeight: 700 }}>{row.label}:</strong>{' '}{row.val}
+                  </div>
+                </div>
               ))}
             </div>
 
-            {/* Quick-link icon buttons row 2 */}
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
-              {quickLinks2.map(item => (
-                <Link key={item.label} to={item.to} style={{
-                  background: C.red, color: '#fff', padding: '10px 14px',
-                  fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 700, fontSize: 12,
-                  display: 'flex', flexDirection: 'column', alignItems: 'center',
-                  gap: 4, maxWidth: 110, textAlign: 'center', whiteSpace: 'pre-line',
-                }}>
-                  <span style={{ fontSize: 22 }}>{item.emoji}</span>
-                  {item.label}
-                </Link>
-              ))}
+            <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
+              <a href="tel:9543849191" className="btn-red" style={{ fontSize: 13, padding: '14px 32px' }}>
+                Call to Register
+              </a>
+              <Link to="/classes" className="btn-outline-white" style={{ fontSize: 13, padding: '14px 32px' }}>
+                View All Classes
+              </Link>
             </div>
           </div>
 
-          {/* CTA Card */}
+          {/* CTA card */}
           <div className="hero-cta-card" style={{
-            flex: '0 0 294px', background: '#fff',
-            border: `3px solid ${C.red}`, padding: '32px 24px',
-            textAlign: 'center', boxShadow: '0 8px 32px rgba(0,0,0,0.45)',
+            flex: '0 0 300px',
+            background: '#fff',
+            padding: '36px 28px',
+            boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
+            borderTop: `4px solid ${C.red}`,
           }}>
-            <div style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 800, fontSize: '1.05rem', color: C.red, marginBottom: 8 }}>
-              Call for information
-            </div>
-            <div style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 700, fontSize: '0.95rem', color: C.navy, marginBottom: 14 }}>
-              new CLASSES runnig now!
-            </div>
-            <div style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontSize: '2.5rem', color: C.red, lineHeight: 1.05, marginBottom: 4 }}>
-              REGISTER TODAY!
-            </div>
+            <div style={{
+              fontFamily: "'Barlow Condensed', sans-serif",
+              fontWeight: 600, fontSize: '0.8rem',
+              color: C.red, letterSpacing: 2.5,
+              textTransform: 'uppercase', marginBottom: 10,
+            }}>Register Today</div>
+            <div style={{
+              fontFamily: "'Barlow Condensed', sans-serif",
+              fontWeight: 900, fontSize: '2.6rem',
+              color: C.navy, lineHeight: 1.05, marginBottom: 6,
+            }}>IT'S QUICK<br />&amp; EASY</div>
             <a href="tel:9543849191" style={{
-              fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900,
-              fontSize: '2.2rem', color: C.red, display: 'block', marginBottom: 10,
+              fontFamily: "'Barlow Condensed', sans-serif",
+              fontWeight: 900, fontSize: '1.9rem',
+              color: C.red, display: 'block', marginBottom: 4,
+              letterSpacing: 0.5,
             }}>954-384-9191</a>
-            <div style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 800, fontSize: '1.1rem', color: C.navy, marginBottom: 20 }}>
-              IT'S QUICK AND EASY
+            <div style={{ fontSize: 12, color: '#999', marginBottom: 24, letterSpacing: 0.5 }}>
+              Call us — new classes starting now
             </div>
-            <a href="tel:9543849191" className="btn-navy" style={{ display: 'block', padding: 14 }}>
+
+            <div style={{ borderTop: '1px solid #eee', paddingTop: 20, marginBottom: 20 }}>
+              {[
+                { label: 'Next Sports Camp', val: 'Sept 23 · Oct 2 · Oct 13 · Oct 20' },
+                { label: 'Birthday Parties', val: 'Sat & Sun — call to book' },
+                { label: 'Open Gym',         val: 'Sat nights 6:30–10pm' },
+                { label: 'Aftercare',        val: 'Van or Drop-off options' },
+              ].map(item => (
+                <div key={item.label} style={{ marginBottom: 10, fontSize: 13 }}>
+                  <div style={{ fontWeight: 700, color: C.navy, marginBottom: 1 }}>{item.label}</div>
+                  <div style={{ color: '#777' }}>{item.val}</div>
+                </div>
+              ))}
+            </div>
+
+            <a href="tel:9543849191" className="btn-navy" style={{ display: 'block', padding: 14, textAlign: 'center' }}>
               Call Now
             </a>
           </div>
         </div>
       </section>
 
-      {/* PHOTO STRIP */}
-      <div className="photo-strip" style={{ display: 'grid', gridTemplateColumns: 'repeat(5,1fr)', height: 180 }}>
-        {strip.map((p, i) => (
-          <div key={i} className="photo-placeholder" style={{ background: p.bg }}>
-            <span>{p.emoji}</span>
-            <span style={{ fontSize: 12, letterSpacing: 1 }}>{p.label}</span>
+      {/* ── STATS BAR ────────────────────────────────────────────────── */}
+      <div style={{
+        background: C.red,
+        padding: '28px 24px',
+      }}>
+        <div style={{
+          maxWidth: 900,
+          margin: '0 auto',
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'space-around',
+          gap: 24,
+        }}>
+          {stats.map(s => (
+            <div key={s.label} style={{ textAlign: 'center' }}>
+              <div style={{
+                fontFamily: "'Barlow Condensed', sans-serif",
+                fontWeight: 900, fontSize: '2.4rem',
+                color: '#fff', lineHeight: 1,
+              }}>{s.number}</div>
+              <div style={{
+                fontFamily: "'Barlow', sans-serif",
+                fontWeight: 500, fontSize: 12,
+                color: 'rgba(255,255,255,0.75)',
+                letterSpacing: 1, textTransform: 'uppercase', marginTop: 4,
+              }}>{s.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* ── PHOTO STRIP ──────────────────────────────────────────────── */}
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(5, 1fr)',
+        height: 220,
+        overflow: 'hidden',
+      }}>
+        {stripPhotos.map((p, i) => (
+          <div key={i} className="photo-card" style={{ position: 'relative' }}>
+            <img src={p.src} alt={p.label} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <div style={{
+              position: 'absolute', inset: 0,
+              background: 'linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 50%)',
+            }} />
+            <div style={{
+              position: 'absolute', bottom: 12, left: 0, right: 0,
+              textAlign: 'center',
+              fontFamily: "'Barlow Condensed', sans-serif",
+              fontWeight: 700, fontSize: 12,
+              color: '#fff', letterSpacing: 1.5,
+              textTransform: 'uppercase',
+            }}>{p.label}</div>
           </div>
         ))}
       </div>
 
-      {/* SERVICES GRID */}
-      <section style={{ padding: '64px 24px', maxWidth: 1200, margin: '0 auto' }}>
-        <div className="service-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(255px,1fr))', gap: 40 }}>
-          <ServiceCard title="CLASSES" to="/classes" body={`Learn tumbling, gymnastics bars & beam, trampoline, and cheer at TAG USA.\n\nFREE baby classes\n• Tiny Tots (2 yrs old)\n• Preschool (3 yrs old)\n• Beginner Boys · Acro-Tumble\n• Trampoline · Beginner Girls\n• Intro Cheer · Intermediate\n• Advanced · PreTeam · Team\n\nCALL 954-384-9191 to join`} />
-          <ServiceCard title="SPORTS CAMP 2025–26" to="/classes/camps" body={`YES, TAG USA has camp during Aug 4–8.\n\nKeep the kids active and happy with our Girls Gymnastics and Boys Sports Camp!\n\nFull day camps for SUMMER, School Days Off, Thanksgiving, Winter, and Spring Break weeks.\n\nRegister NOW for your favorite Summer Camp THEME weeks.`} />
-          <ServiceCard title="BIRTHDAY PARTIES" to="/birthday-parties" body={`The entire gymnastics and trampoline areas are all yours for a PRIVATE bday party for your child and guests.\n\nParties use ALL bars, obstacles, beams, trampolines, pits, inflatables, ropes, and floors. Two large private party rooms. Two coaches included.\n\nReservations by phone: 954-384-9191`} />
-          <ServiceCard title="AFTERSCHOOL SHUTTLE PICKUP" to="/classes/aftercare" body={`Make your life easier by using our van pickup from school with an afternoon full of sports activities.\n\nYour athlete trains with a team coach on beams, trampoline, bars, and tumbling. Then open play on trampolines, rope swing, foam pit, and more.\n\nLIMITED — Register NOW for 2025–26.`} />
+      {/* ── SERVICES GRID ────────────────────────────────────────────── */}
+      <section style={{ padding: '80px 24px', maxWidth: 1200, margin: '0 auto' }}>
+        <div style={{ textAlign: 'center', marginBottom: 52 }}>
+          <div style={{ width: 40, height: 2, background: C.red, margin: '0 auto 16px' }} />
+          <h2 style={{
+            fontFamily: "'Barlow Condensed', sans-serif",
+            fontWeight: 900, fontSize: 'clamp(1.8rem, 4vw, 2.8rem)',
+            color: C.navy, letterSpacing: 1, textTransform: 'uppercase',
+          }}>Everything We Offer</h2>
+          <p style={{ color: '#777', marginTop: 10, fontSize: 15, maxWidth: 500, margin: '10px auto 0' }}>
+            Programs for every age, goal, and schedule
+          </p>
         </div>
-      </section>
 
-      {/* RECREATIONAL CLASSES */}
-      <section style={{ background: C.offWhite, padding: '64px 24px' }}>
-        <div className="two-col" style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', gap: 48, alignItems: 'flex-start' }}>
-          <div style={{
-            flexShrink: 0, width: 256, height: 320, background: C.navy,
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            color: '#fff', fontFamily: "'Barlow Condensed',sans-serif",
-            fontWeight: 900, fontSize: '2.8rem', textAlign: 'center', lineHeight: 1.1,
-          }}>
-            <div>🏆<br />TAG USA<br /><span style={{ color: C.red }}>CHAMPION</span></div>
-          </div>
-          <div style={{ flex: 1 }}>
-            <h2 style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontSize: '2.2rem', color: C.navy, marginBottom: 8 }}>
-              Recreational Classes and Competitive Teams
-            </h2>
-            <div style={{ width: 60, height: 3, background: C.red, marginBottom: 18 }} />
-            <p style={{ fontWeight: 600, marginBottom: 14 }}>
-              TAG USA Gymnastics / Trampoline / Cheer has a program for every age and experience…..
-            </p>
-            <p style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 700, color: C.navy, fontSize: '1.05rem', marginBottom: 10, textDecoration: 'underline' }}>
-              Morning, weekday afternoon and saturday classes:
-            </p>
-            <div style={{ columns: 2, gap: 24, marginBottom: 20 }}>
-              {recClasses.map((cls, i) => (
-                <div key={i} style={{ color: C.navy, fontSize: 13, marginBottom: 5, breakInside: 'avoid', fontWeight: 600 }}>{cls}</div>
-              ))}
-            </div>
-            <p style={{ fontStyle: 'italic', marginBottom: 18, fontSize: 15 }}>
-              Register by phone at <a href="tel:9543849191" style={{ color: C.navy, fontWeight: 700 }}>954-384-9191</a>
-            </p>
-            <div style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 800, fontSize: '1.05rem', color: C.red, marginBottom: 6 }}>
-              Competitive Teams:
-            </div>
-            {['Power Tumbling TEAM', 'Boys Gymnastics Pre-TEAM'].map(t => (
-              <div key={t} style={{ color: C.navy, fontWeight: 600, fontSize: 14, marginBottom: 4 }}>{t}</div>
-            ))}
-            <p style={{ fontStyle: 'italic', fontSize: 14, color: C.textGray, margin: '10px 0 20px' }}>
-              Schedule a team tryout by calling <a href="tel:9543849191" style={{ color: C.navy, fontWeight: 700 }}>954-384-9191</a>
-            </p>
-            <Link to="/classes" className="btn-navy" style={{ display: 'inline-block' }}>CLASSES</Link>
-          </div>
-        </div>
-      </section>
-
-      {/* CAMP / AFTERCARE PRICING */}
-      <section style={{ padding: '64px 24px', maxWidth: 900, margin: '0 auto' }}>
-        <h2 style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontSize: '2rem', color: C.red, marginBottom: 4 }}>Need more activities?</h2>
-        <p style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 700, fontSize: '1.1rem', color: C.red, marginBottom: 6 }}>Sports? Trampolines? Tumbling? Gymnastics?</p>
-        <h3 style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontSize: '2rem', color: C.red, marginBottom: 22 }}>Do Camp or Aftercare!</h3>
-        <p style={{ fontSize: 14, color: C.textGray, lineHeight: 1.8, marginBottom: 28 }}>
-          Our day <strong style={{ color: C.navy }}>camps</strong> and <strong style={{ color: C.navy }}>Aftercare programs</strong> allow you to stay at work or have some quiet time while your children enjoy their day at our gym with trampolines, gymnastics, Tumbling, Dodgeball, Inflatables, Basketball, Color War, Soccer, Ninja, Tumble Tracks, Arts/Crafts, and more.
-        </p>
-        <PricingBlock title="SCHOOL DAYS OFF / HOLIDAY SPORTS CAMPS" rows={[
-          ['Hours', '8:30am – 3:45pm'],
-          ['Late care available until', '6:00pm'],
-          ['Members', '$65/day  or  $310 for a week'],
-          ['Non-members', '$70/day  or  $325 for a week'],
-        ]} />
-        <div style={{ height: 24 }} />
-        <PricingBlock title="AFTERCARE PROGRAM:" rows={[
-          ['Hours', '2:30pm – 6:00pm'],
-          ['Van Pick-up', '$495/month'],
-          ['Parent Drop Off', '$370/month'],
-        ]} />
-        <div style={{ marginTop: 28 }}>
-          <a href="tel:9543849191" className="btn-red" style={{ display: 'inline-block' }}>Register by phone 954-384-9191</a>
-        </div>
-      </section>
-
-      {/* AFTERSCHOOL SHUTTLE BANNER */}
-      <section style={{ background: '#1e2235', padding: '64px 24px' }}>
-        <div className="two-col" style={{ maxWidth: 1100, margin: '0 auto', display: 'flex', gap: 48, alignItems: 'center' }}>
-          <div style={{ flex: 1 }}>
-            <h2 style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontSize: '2.2rem', color: C.cyan, marginBottom: 8 }}>
-              After-School Shuttle Pick Up
-            </h2>
-            <div style={{ width: 60, height: 3, background: C.cyan, marginBottom: 18 }} />
-            <p style={{ color: '#ccc', fontSize: 14, lineHeight: 1.8, marginBottom: 18 }}>
-              TAG USA Gymnastics offers after school programs with Van Pick-up or Parent Drop-off option. Please review our schedule.
-            </p>
-            {[
-              ['Pick-up from school:', '2:00pm'],
-              ['Team Coached Class', 'at 2:30pm – 3:20pm'],
-              ['Snack – Homework – Crafts from', '3:30 – 4:15pm'],
-              ['Open Gym', 'for Trampolines, Bars, Beams from 4:30 – 6:00pm'],
-            ].map(([k, v]) => (
-              <div key={k} style={{ fontSize: 14, color: '#fff', marginBottom: 7 }}>
-                <strong style={{ color: C.cyan }}>{k}</strong> {v}
-              </div>
-            ))}
-            <div style={{
-              fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 800,
-              color: C.red, fontSize: '0.95rem', margin: '16px 0 22px',
-            }}>EARLY REGISTRATION DISCOUNT for the 2025–26 school year</div>
-            <Link to="/classes/aftercare" className="btn-cyan" style={{ display: 'inline-block' }}>Learn more</Link>
-          </div>
-          <div style={{ flexShrink: 0 }}>
-            <div style={{
-              width: 180, height: 180, background: '#f5a623',
-              borderRadius: '50%', display: 'flex',
-              alignItems: 'center', justifyContent: 'center', fontSize: 84,
-            }}>🤸‍♀️</div>
-          </div>
-        </div>
-      </section>
-
-      {/* STAY SOCIAL */}
-      <section style={{ padding: '56px 24px', textAlign: 'center', background: '#fff' }}>
-        <h2 style={{
-          fontFamily: "'Barlow Condensed',sans-serif", fontStyle: 'italic',
-          fontWeight: 900, fontSize: '2.4rem', color: C.textDark, marginBottom: 8,
-        }}>Stay Social</h2>
-        <p style={{ color: C.textGray, marginBottom: 32 }}>
-          Tag <strong>#taggymnasticsfl</strong> to be featured on Instagram
-        </p>
-        <div style={{
-          display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(150px,1fr))',
-          gap: 8, maxWidth: 1000, margin: '0 auto',
+        <div className="service-grid" style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+          gap: 2,
         }}>
-          {socialCards.map((c, i) => (
-            <div key={i} style={{
-              background: c.bg, padding: '20px 12px',
-              display: 'flex', flexDirection: 'column',
-              alignItems: 'center', justifyContent: 'center',
-              minHeight: 148, gap: 6,
+          {services.map((s, i) => (
+            <Link key={i} to={s.to} className="photo-card" style={{
+              display: 'block',
+              position: 'relative',
+              height: 380,
             }}>
-              <span style={{ fontSize: 28 }}>{c.emoji}</span>
+              <img src={s.img} alt={s.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              {/* Gradient overlay */}
               <div style={{
-                fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900,
-                fontSize: '0.82rem', color: '#fff', textAlign: 'center', lineHeight: 1.25,
-              }}>{c.title}</div>
-              <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.65)', textAlign: 'center', lineHeight: 1.3 }}>{c.sub}</div>
-            </div>
+                position: 'absolute', inset: 0,
+                background: 'linear-gradient(to top, rgba(10,16,40,0.95) 0%, rgba(10,16,40,0.3) 55%, transparent 100%)',
+              }} />
+              {/* Tag pill */}
+              <div style={{
+                position: 'absolute', top: 16, left: 16,
+                background: C.red,
+                padding: '3px 10px',
+                fontFamily: "'Barlow Condensed', sans-serif",
+                fontWeight: 700, fontSize: 11,
+                color: '#fff', letterSpacing: 1.5, textTransform: 'uppercase',
+              }}>{s.tag}</div>
+              {/* Bottom content */}
+              <div style={{
+                position: 'absolute', bottom: 0, left: 0, right: 0, padding: '24px 24px 28px',
+              }}>
+                <h3 style={{
+                  fontFamily: "'Barlow Condensed', sans-serif",
+                  fontWeight: 900, fontSize: '1.6rem',
+                  color: '#fff', marginBottom: 8, letterSpacing: 0.5,
+                }}>{s.title}</h3>
+                <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.72)', lineHeight: 1.6, marginBottom: 14 }}>
+                  {s.desc}
+                </p>
+                <div style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 6,
+                  fontFamily: "'Barlow Condensed', sans-serif",
+                  fontWeight: 700, fontSize: 12,
+                  color: C.red, letterSpacing: 1.5, textTransform: 'uppercase',
+                }}>
+                  Learn More <span style={{ fontSize: 14 }}>→</span>
+                </div>
+              </div>
+            </Link>
           ))}
         </div>
       </section>
-    </div>
-  )
-}
 
-// ── small shared sub-components ───────────────────────────────────────────────
-function ServiceCard({ title, body, to }: { title: string; body: string; to: string }) {
-  return (
-    <div style={{ borderTop: `4px solid ${C.navy}`, paddingTop: 18 }}>
-      <h3 style={{ fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 900, fontSize: '1.5rem', color: C.navy, marginBottom: 10 }}>
-        {title}
-      </h3>
-      <div style={{ fontSize: 14, color: C.textGray, lineHeight: 1.85, whiteSpace: 'pre-line', marginBottom: 18 }}>
-        {body}
-      </div>
-      <Link to={to} className="btn-navy" style={{ display: 'inline-block' }}>More Details</Link>
-    </div>
-  )
-}
+      {/* ── RECREATIONAL CLASSES ─────────────────────────────────────── */}
+      <section style={{ background: '#f7f8fc', padding: '80px 24px' }}>
+        <div className="two-col" style={{ maxWidth: 1180, margin: '0 auto', display: 'flex', gap: 64, alignItems: 'center' }}>
 
-function PricingBlock({ title, rows }: { title: string; rows: string[][] }) {
-  return (
-    <div>
-      <div style={{
-        fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 800,
-        fontSize: '0.95rem', color: C.navy, letterSpacing: 1, marginBottom: 10,
-      }}>{title}</div>
-      {rows.map(([k, v]) => (
-        <div key={k} style={{ fontSize: 14, color: C.textDark, marginBottom: 5 }}>
-          <strong>{k}</strong>{'  '}{v}
+          {/* Photo side */}
+          <div className="photo-card" style={{ flex: '0 0 420px', height: 520, boxShadow: '0 16px 48px rgba(0,0,0,0.12)' }}>
+            <img src={PHOTOS.rec} alt="Gymnastics classes" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          </div>
+
+          {/* Content side */}
+          <div style={{ flex: 1 }}>
+            <div style={{ width: 40, height: 2, background: C.red, marginBottom: 16 }} />
+            <h2 style={{
+              fontFamily: "'Barlow Condensed', sans-serif",
+              fontWeight: 900, fontSize: 'clamp(1.8rem, 3.5vw, 2.6rem)',
+              color: C.navy, marginBottom: 8, letterSpacing: 0.5,
+              textTransform: 'uppercase', lineHeight: 1.05,
+            }}>Recreational Classes &amp;<br />Competitive Teams</h2>
+
+            <p style={{ fontSize: 14, color: '#666', lineHeight: 1.75, marginBottom: 24, maxWidth: 480 }}>
+              TAG USA has a program for every age and experience level. Morning, afternoon, and Saturday classes available year-round.
+            </p>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              gap: '6px 24px',
+              marginBottom: 28,
+            }}>
+              {recClasses.map((cls, i) => (
+                <div key={i} style={{
+                  display: 'flex', gap: 8, alignItems: 'baseline',
+                  padding: '6px 0',
+                  borderBottom: '1px solid #ebebeb',
+                  fontSize: 13, color: '#444',
+                }}>
+                  <div style={{ width: 4, height: 4, borderRadius: '50%', background: C.red, flexShrink: 0, marginTop: 5 }} />
+                  {cls}
+                </div>
+              ))}
+            </div>
+
+            <p style={{ fontStyle: 'italic', fontSize: 14, color: '#888', marginBottom: 24 }}>
+              Register by phone at{' '}
+              <a href="tel:9543849191" style={{ color: C.navy, fontWeight: 700, fontStyle: 'normal' }}>954-384-9191</a>
+            </p>
+
+            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+              <Link to="/classes" className="btn-navy">View All Classes</Link>
+              <Link to="/teams/jo-teams" className="btn-red">Competitive Teams</Link>
+            </div>
+          </div>
         </div>
-      ))}
+      </section>
+
+      {/* ── CAMP & AFTERCARE PRICING ─────────────────────────────────── */}
+      <section style={{ padding: '80px 24px', maxWidth: 1100, margin: '0 auto' }}>
+        <div style={{ textAlign: 'center', marginBottom: 52 }}>
+          <div style={{ width: 40, height: 2, background: C.red, margin: '0 auto 16px' }} />
+          <h2 style={{
+            fontFamily: "'Barlow Condensed', sans-serif",
+            fontWeight: 900, fontSize: 'clamp(1.8rem, 4vw, 2.6rem)',
+            color: C.navy, letterSpacing: 1, textTransform: 'uppercase',
+          }}>Camps &amp; Aftercare Programs</h2>
+          <p style={{ color: '#777', marginTop: 10, fontSize: 15 }}>
+            Keep your athlete active — during the school year and all breaks
+          </p>
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 2 }}>
+          {[
+            {
+              title: 'Sports Camps',
+              sub: 'School Days Off & Summer',
+              lines: [
+                'Hours: 8:30am – 3:45pm',
+                'Late care available until 6:00pm',
+                'Members: $65/day or $310/week',
+                'Non-members: $70/day or $325/week',
+              ],
+              bg: C.navy,
+              to: '/classes/camps',
+            },
+            {
+              title: 'Aftercare Program',
+              sub: 'Mon – Fri · School Year',
+              lines: [
+                'Hours: 2:30pm – 6:00pm',
+                'Van Pick-up: $495/month',
+                'Parent Drop-Off: $370/month',
+                'Early registration discount available',
+              ],
+              bg: '#1a1a2e',
+              to: '/classes/aftercare',
+            },
+            {
+              title: 'Open Gym',
+              sub: 'Every Saturday Night',
+              lines: [
+                'Open to all athletes & families',
+                'Hours: 6:30pm – 10:00pm',
+                'Trampolines, foam pits & more',
+                'Call for pricing details',
+              ],
+              bg: C.red,
+              to: '/open-gym',
+            },
+          ].map((item, i) => (
+            <div key={i} style={{ background: item.bg, padding: '40px 32px', position: 'relative' }}>
+              <div style={{
+                fontFamily: "'Barlow Condensed', sans-serif",
+                fontWeight: 600, fontSize: '0.72rem',
+                color: 'rgba(255,255,255,0.5)',
+                letterSpacing: 2.5, textTransform: 'uppercase',
+                marginBottom: 8,
+              }}>{item.sub}</div>
+              <h3 style={{
+                fontFamily: "'Barlow Condensed', sans-serif",
+                fontWeight: 900, fontSize: '2rem',
+                color: '#fff', marginBottom: 20,
+                letterSpacing: 0.5,
+              }}>{item.title}</h3>
+              {item.lines.map((line, j) => (
+                <div key={j} style={{
+                  fontSize: 14, color: 'rgba(255,255,255,0.75)',
+                  padding: '8px 0',
+                  borderBottom: '1px solid rgba(255,255,255,0.1)',
+                }}>{line}</div>
+              ))}
+              <Link to={item.to} style={{
+                display: 'inline-block', marginTop: 24,
+                fontFamily: "'Barlow Condensed', sans-serif",
+                fontWeight: 700, fontSize: 12,
+                color: 'rgba(255,255,255,0.7)',
+                letterSpacing: 2, textTransform: 'uppercase',
+                borderBottom: '1px solid rgba(255,255,255,0.3)',
+                paddingBottom: 2,
+                transition: 'color 0.2s',
+              }}>Learn More →</Link>
+            </div>
+          ))}
+        </div>
+
+        <div style={{ textAlign: 'center', marginTop: 40 }}>
+          <a href="tel:9543849191" className="btn-red" style={{ padding: '15px 48px', fontSize: 13 }}>
+            Register by Phone: 954-384-9191
+          </a>
+        </div>
+      </section>
+
+      {/* ── AFTERSCHOOL SHUTTLE ──────────────────────────────────────── */}
+      <section style={{ background: '#0a1020', padding: 0, overflow: 'hidden' }}>
+        <div className="two-col" style={{ maxWidth: 1180, margin: '0 auto', display: 'flex', minHeight: 460 }}>
+
+          {/* Image */}
+          <div className="photo-card" style={{ flex: '0 0 50%', minHeight: 420 }}>
+            <img src={PHOTOS.shuttle} alt="Afterschool program" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <div style={{ position: 'absolute', inset: 0, background: 'rgba(10,16,32,0.35)' }} />
+          </div>
+
+          {/* Content */}
+          <div style={{ flex: 1, padding: '56px 48px 56px 40px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <div style={{ width: 36, height: 2, background: C.cyan, marginBottom: 16 }} />
+            <h2 style={{
+              fontFamily: "'Barlow Condensed', sans-serif",
+              fontWeight: 900, fontSize: 'clamp(1.7rem, 3vw, 2.5rem)',
+              color: '#fff', marginBottom: 8,
+              textTransform: 'uppercase', letterSpacing: 0.5,
+            }}>After-School<br />Shuttle Pick Up</h2>
+            <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: 14, lineHeight: 1.75, marginBottom: 28, maxWidth: 420 }}>
+              Van pickup from local schools, team coaching, homework help, and open gym. A safe, structured, and active afternoon for your athlete.
+            </p>
+
+            {[
+              ['2:00pm',       'Pick-up from school'],
+              ['2:30–3:20pm', 'Team coached gymnastics class'],
+              ['3:30–4:15pm', 'Snack · Homework · Crafts'],
+              ['4:30–6:00pm', 'Open gym — trampolines, bars, beams'],
+            ].map(([time, label]) => (
+              <div key={time} style={{ display: 'flex', gap: 16, marginBottom: 12, alignItems: 'flex-start' }}>
+                <div style={{
+                  background: C.navy, color: '#fff',
+                  padding: '3px 10px',
+                  fontFamily: "'Barlow Condensed', sans-serif",
+                  fontWeight: 700, fontSize: 11,
+                  whiteSpace: 'nowrap', flexShrink: 0, letterSpacing: 0.5,
+                }}>{time}</div>
+                <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.75)', paddingTop: 3 }}>{label}</div>
+              </div>
+            ))}
+
+            <div style={{
+              display: 'inline-block',
+              background: 'rgba(192,57,43,0.15)',
+              border: '1px solid rgba(192,57,43,0.4)',
+              padding: '8px 14px',
+              marginTop: 4, marginBottom: 24,
+              fontFamily: "'Barlow Condensed', sans-serif",
+              fontWeight: 700, fontSize: 12,
+              color: '#ff8a80', letterSpacing: 1, textTransform: 'uppercase',
+            }}>
+              Early Registration Discount — 2025–26 School Year
+            </div>
+
+            <div>
+              <Link to="/classes/aftercare" className="btn-cyan" style={{ display: 'inline-block' }}>
+                Learn More
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── CALL TO ACTION BANNER ────────────────────────────────────── */}
+      <section style={{
+        background: C.red,
+        padding: '56px 24px',
+        textAlign: 'center',
+      }}>
+        <h2 style={{
+          fontFamily: "'Barlow Condensed', sans-serif",
+          fontWeight: 900, fontSize: 'clamp(2rem, 5vw, 3.2rem)',
+          color: '#fff', letterSpacing: 1,
+          textTransform: 'uppercase', marginBottom: 8,
+        }}>Ready to Get Started?</h2>
+        <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: 16, marginBottom: 28 }}>
+          Call us today — classes, camps, and parties are filling up fast.
+        </p>
+        <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
+          <a href="tel:9543849191" className="btn-outline-white" style={{ fontSize: 16, padding: '15px 40px', fontWeight: 900 }}>
+            954-384-9191
+          </a>
+          <Link to="/contact" className="btn-outline-white" style={{ fontSize: 13, padding: '15px 32px' }}>
+            Send a Message
+          </Link>
+        </div>
+      </section>
+
     </div>
   )
 }
