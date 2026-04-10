@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,900&family=Barlow:wght@400;500;600;700&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Barlow', sans-serif; color: #1a1a1a; background: #fff; }
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+
+/* ── Buttons ─────────────────────────────────────────────────────────── */
+.btn-red {
+  background: #c0392b;
+  color: #fff;
+  padding: 12px 28px;
+  border: none;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  display: inline-block;
+  transition: background 0.2s;
+  text-align: center;
+}
+.btn-red:hover { background: #a93226; }
+
+.btn-navy {
+  background: #1c2e6b;
+  color: #fff;
+  padding: 12px 28px;
+  border: none;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  display: inline-block;
+  transition: background 0.2s;
+  text-align: center;
+}
+.btn-navy:hover { background: #152055; }
+
+.btn-cyan {
+  background: #00bcd4;
+  color: #fff;
+  padding: 10px 24px;
+  border: none;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  display: inline-block;
+  transition: background 0.2s;
+}
+.btn-cyan:hover { background: #0097a7; }
+
+/* ── Dropdown ────────────────────────────────────────────────────────── */
+.dropdown { position: relative; }
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  min-width: 210px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.14);
+  z-index: 1000;
+  border-top: 3px solid #c0392b;
+}
+.dropdown:hover .dropdown-menu { display: block; }
+.dropdown-menu a {
+  display: block;
+  padding: 11px 18px;
+  font-family: 'Barlow', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #1a1a1a;
+  border-bottom: 1px solid #eee;
+  transition: background 0.15s, color 0.15s;
+}
+.dropdown-menu a:last-child { border-bottom: none; }
+.dropdown-menu a:hover { background: #1c2e6b; color: #fff; }
+
+/* ── Utilities ───────────────────────────────────────────────────────── */
+.photo-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  color: rgba(255,255,255,0.75);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  gap: 8px;
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .nav-desktop  { display: none !important; }
+  .nav-mobile-btn { display: flex !important; }
+  .photo-strip  { grid-template-columns: repeat(3, 1fr) !important; height: 120px !important; }
+  .two-col      { flex-direction: column !important; }
+  .two-col-reverse { flex-direction: column-reverse !important; }
+  .hero-cta-card { flex: none !important; width: 100% !important; max-width: 380px !important; }
+  .service-grid { grid-template-columns: 1fr !important; }
+  .footer-inner { flex-direction: column !important; align-items: flex-start !important; }
+}
