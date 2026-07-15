@@ -1,55 +1,33 @@
 import { Link } from 'react-router-dom'
 import { C } from '../constants'
 
-// ── Unsplash photo URLs (gymnastics / athletics stock) ────────────────────────
-const PHOTOS = {
-  hero:       'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1600&q=85',
-  strip1:     'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?auto=format&fit=crop&w=600&q=80',
-  strip2:     'https://images.unsplash.com/photo-1566438480900-0609be27a4be?auto=format&fit=crop&w=600&q=80',
-  strip3:     'https://images.unsplash.com/photo-1547347298-4074fc3086f0?auto=format&fit=crop&w=600&q=80',
-  strip4:     'https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=600&q=80',
-  strip5:     'https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?auto=format&fit=crop&w=600&q=80',
-  classes:    'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=700&q=80',
-  camps:      'https://images.unsplash.com/photo-1594882645126-14ac19a0f2c4?auto=format&fit=crop&w=700&q=80',
-  birthday:   'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=700&q=80',
-  aftercare:  'https://images.unsplash.com/photo-1546483875-ad9014c88eba?auto=format&fit=crop&w=700&q=80',
-  rec:        'https://images.unsplash.com/photo-1571019613576-2b22c76fd955?auto=format&fit=crop&w=700&q=80',
-  shuttle:    'https://images.unsplash.com/photo-1519340333755-56e9c1d04579?auto=format&fit=crop&w=900&q=80',
-}
-
-const stripPhotos = [
-  { src: PHOTOS.strip1, label: 'Classes & Training' },
-  { src: PHOTOS.strip2, label: 'Competitive Teams' },
-  { src: PHOTOS.strip3, label: 'Gymnastics' },
-  { src: PHOTOS.strip4, label: 'Fitness & Fun' },
-  { src: PHOTOS.strip5, label: 'Aftercare' },
-]
+const HERO = '/Screenshot_2026-05-11_at_2.13.17_PM.png'
 
 const services = [
   {
     title: 'Classes',
-    img: PHOTOS.classes,
+    color: C.navy,
     to: '/classes',
     desc: 'Recreational classes for all ages — from FREE baby classes to advanced competitive preparation. Weekday mornings, afternoons, and Saturdays.',
     tag: 'All Ages',
   },
   {
     title: 'Sports Camps',
-    img: PHOTOS.camps,
+    color: '#1a2a5e',
     to: '/classes/camps',
     desc: 'Full-day camps for Summer, school days off, Thanksgiving, Winter Break, and Spring Break. Themed weeks your kids will love.',
     tag: 'Ages 4–15',
   },
   {
     title: 'Birthday Parties',
-    img: PHOTOS.birthday,
+    color: C.red,
     to: '/birthday-parties',
     desc: 'The entire gym is yours — bars, beams, trampolines, pits, and inflatables. Two private party rooms and two dedicated coaches.',
     tag: 'Sat & Sun',
   },
   {
     title: 'Afterschool Shuttle',
-    img: PHOTOS.aftercare,
+    color: '#0a1020',
     to: '/classes/aftercare',
     desc: 'Van pickup from school, team coaching, homework time, and open gym. Van Pick-up $495/mo · Parent Drop-off $370/mo.',
     tag: 'School Year',
@@ -84,7 +62,7 @@ export default function Home() {
 
       {/* ── HERO ─────────────────────────────────────────────────────── */}
       <section style={{
-        background: `linear-gradient(105deg, rgba(10,16,40,0.93) 0%, rgba(10,16,40,0.78) 55%, rgba(10,16,40,0.55) 100%), url(${PHOTOS.hero}) center 30%/cover no-repeat`,
+        background: `linear-gradient(105deg, rgba(10,16,40,0.88) 0%, rgba(10,16,40,0.70) 55%, rgba(10,16,40,0.45) 100%), url(${HERO}) center/cover no-repeat`,
         minHeight: '90vh',
         display: 'flex',
         alignItems: 'center',
@@ -250,32 +228,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* ── PHOTO STRIP ──────────────────────────────────────────────── */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(5, 1fr)',
-        height: 220,
-        overflow: 'hidden',
-      }}>
-        {stripPhotos.map((p, i) => (
-          <div key={i} className="photo-card" style={{ position: 'relative' }}>
-            <img src={p.src} alt={p.label} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-            <div style={{
-              position: 'absolute', inset: 0,
-              background: 'linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 50%)',
-            }} />
-            <div style={{
-              position: 'absolute', bottom: 12, left: 0, right: 0,
-              textAlign: 'center',
-              fontFamily: "'Barlow Condensed', sans-serif",
-              fontWeight: 700, fontSize: 12,
-              color: '#fff', letterSpacing: 1.5,
-              textTransform: 'uppercase',
-            }}>{p.label}</div>
-          </div>
-        ))}
-      </div>
-
       {/* ── SERVICES GRID ────────────────────────────────────────────── */}
       <section style={{ padding: '80px 24px', maxWidth: 1200, margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: 52 }}>
@@ -296,18 +248,17 @@ export default function Home() {
           gap: 2,
         }}>
           {services.map((s, i) => (
-            <Link key={i} to={s.to} className="photo-card" style={{
-              display: 'block',
+            <Link key={i} to={s.to} style={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'flex-end',
               position: 'relative',
               height: 380,
+              background: s.color,
+              padding: '24px 24px 28px',
+              textDecoration: 'none',
+              transition: 'opacity 0.2s',
             }}>
-              <img src={s.img} alt={s.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-              {/* Gradient overlay */}
-              <div style={{
-                position: 'absolute', inset: 0,
-                background: 'linear-gradient(to top, rgba(10,16,40,0.95) 0%, rgba(10,16,40,0.3) 55%, transparent 100%)',
-              }} />
-              {/* Tag pill */}
               <div style={{
                 position: 'absolute', top: 16, left: 16,
                 background: C.red,
@@ -316,26 +267,21 @@ export default function Home() {
                 fontWeight: 700, fontSize: 11,
                 color: '#fff', letterSpacing: 1.5, textTransform: 'uppercase',
               }}>{s.tag}</div>
-              {/* Bottom content */}
+              <h3 style={{
+                fontFamily: "'Barlow Condensed', sans-serif",
+                fontWeight: 900, fontSize: '1.6rem',
+                color: '#fff', marginBottom: 8, letterSpacing: 0.5,
+              }}>{s.title}</h3>
+              <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.72)', lineHeight: 1.6, marginBottom: 14 }}>
+                {s.desc}
+              </p>
               <div style={{
-                position: 'absolute', bottom: 0, left: 0, right: 0, padding: '24px 24px 28px',
+                display: 'inline-flex', alignItems: 'center', gap: 6,
+                fontFamily: "'Barlow Condensed', sans-serif",
+                fontWeight: 700, fontSize: 12,
+                color: C.red, letterSpacing: 1.5, textTransform: 'uppercase',
               }}>
-                <h3 style={{
-                  fontFamily: "'Barlow Condensed', sans-serif",
-                  fontWeight: 900, fontSize: '1.6rem',
-                  color: '#fff', marginBottom: 8, letterSpacing: 0.5,
-                }}>{s.title}</h3>
-                <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.72)', lineHeight: 1.6, marginBottom: 14 }}>
-                  {s.desc}
-                </p>
-                <div style={{
-                  display: 'inline-flex', alignItems: 'center', gap: 6,
-                  fontFamily: "'Barlow Condensed', sans-serif",
-                  fontWeight: 700, fontSize: 12,
-                  color: C.red, letterSpacing: 1.5, textTransform: 'uppercase',
-                }}>
-                  Learn More <span style={{ fontSize: 14 }}>→</span>
-                </div>
+                Learn More <span style={{ fontSize: 14 }}>→</span>
               </div>
             </Link>
           ))}
@@ -345,11 +291,6 @@ export default function Home() {
       {/* ── RECREATIONAL CLASSES ─────────────────────────────────────── */}
       <section style={{ background: '#f7f8fc', padding: '80px 24px' }}>
         <div className="two-col" style={{ maxWidth: 1180, margin: '0 auto', display: 'flex', gap: 64, alignItems: 'center' }}>
-
-          {/* Photo side */}
-          <div className="photo-card" style={{ flex: '0 0 420px', height: 520, boxShadow: '0 16px 48px rgba(0,0,0,0.12)' }}>
-            <img src={PHOTOS.rec} alt="Gymnastics classes" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-          </div>
 
           {/* Content side */}
           <div style={{ flex: 1 }}>
@@ -495,12 +436,6 @@ export default function Home() {
       {/* ── AFTERSCHOOL SHUTTLE ──────────────────────────────────────── */}
       <section style={{ background: '#0a1020', padding: 0, overflow: 'hidden' }}>
         <div className="two-col" style={{ maxWidth: 1180, margin: '0 auto', display: 'flex', minHeight: 460 }}>
-
-          {/* Image */}
-          <div className="photo-card" style={{ flex: '0 0 50%', minHeight: 420 }}>
-            <img src={PHOTOS.shuttle} alt="Afterschool program" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-            <div style={{ position: 'absolute', inset: 0, background: 'rgba(10,16,32,0.35)' }} />
-          </div>
 
           {/* Content */}
           <div style={{ flex: 1, padding: '56px 48px 56px 40px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>

@@ -1,14 +1,13 @@
 import PageHero from '../components/PageHero'
 import { C } from '../constants'
 
-const HERO = 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1600&q=85'
+const HERO = '/Screenshot_2026-05-11_at_2.13.17_PM.png'
 
 const posts = [
   {
     title: 'Summer Camp 2025 Registration Now Open',
     date: 'January 15, 2025',
     category: 'Camps',
-    img: 'https://images.unsplash.com/photo-1594882645126-14ac19a0f2c4?auto=format&fit=crop&w=500&q=80',
     excerpt: 'Registration for our Summer 2025 sports camps is now open. Themed weeks are filling fast — from Disney-inspired sessions to cooking and pajama parties. Reserve your spot today.',
     categoryColor: C.red,
   },
@@ -16,7 +15,6 @@ const posts = [
     title: 'TAG USA Athletes Qualify for Nationals',
     date: 'December 5, 2024',
     category: 'Competition',
-    img: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=500&q=80',
     excerpt: 'Congratulations to our incredible athletes who qualified for the 2024 USAG National Championships. We are immensely proud of your dedication, hard work, and outstanding performances throughout the season.',
     categoryColor: C.navy,
   },
@@ -24,7 +22,6 @@ const posts = [
     title: 'New Classes Added This Fall',
     date: 'August 20, 2024',
     category: 'Classes',
-    img: 'https://images.unsplash.com/photo-1566438480900-0609be27a4be?auto=format&fit=crop&w=500&q=80',
     excerpt: 'We\'re expanding our fall class schedule with new trampoline sessions, an additional power tumbling level, and a beginner cheerleading program for ages 5 and up. Limited spots remain.',
     categoryColor: '#2e7d32',
   },
@@ -32,7 +29,6 @@ const posts = [
     title: 'Tips for Your Child\'s First Gymnastics Class',
     date: 'July 22, 2024',
     category: 'Tips',
-    img: 'https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&w=500&q=80',
     excerpt: 'Is your little one starting gymnastics for the first time? Here\'s how to prepare them — what to wear, what to expect, and how to make the experience positive and confidence-building from day one.',
     categoryColor: '#7a5a2a',
   },
@@ -40,7 +36,6 @@ const posts = [
     title: 'Birthday Party Season — Book Early',
     date: 'July 10, 2024',
     category: 'Parties',
-    img: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=500&q=80',
     excerpt: 'Weekend party slots are booking up for the fall. Reserve your date early for the most fun birthday party in South Florida — the whole gym is yours, plus two coaches, two private rooms, and full cleanup.',
     categoryColor: '#c2185b',
   },
@@ -48,7 +43,6 @@ const posts = [
     title: 'Aftercare 2025–26 — Register Now for Discount',
     date: 'June 1, 2024',
     category: 'Aftercare',
-    img: 'https://images.unsplash.com/photo-1546483875-ad9014c88eba?auto=format&fit=crop&w=500&q=80',
     excerpt: 'Early registration for our 2025–26 Afterschool Shuttle Pickup program is open. Spots are limited and our early registration discount won\'t last long — call today to secure your athlete\'s spot.',
     categoryColor: '#00838f',
   },
@@ -78,10 +72,8 @@ export default function Blog() {
                 ;(e.currentTarget as HTMLElement).style.boxShadow = '0 2px 16px rgba(0,0,0,0.07)'
               }}
             >
-              {/* Photo */}
-              <div className="photo-card" style={{ height: 200 }}>
-                <img src={post.img} alt={post.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-              </div>
+              {/* Color header */}
+              <div style={{ background: post.categoryColor, height: 8 }} />
 
               {/* Content */}
               <div style={{ padding: '22px 24px 28px' }}>

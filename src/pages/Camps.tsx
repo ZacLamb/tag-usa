@@ -1,13 +1,13 @@
 import PageHero from '../components/PageHero'
 import { C } from '../constants'
 
-const HERO = 'https://images.unsplash.com/photo-1594882645126-14ac19a0f2c4?auto=format&fit=crop&w=1600&q=85'
+const HERO = '/Screenshot_2026-05-11_at_2.13.17_PM.png'
 
 const camps = [
   {
     title: 'Summer Sports Camp',
     sub: 'Aug 4–8 + themed weeks all summer',
-    img: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=700&q=80',
+    color: C.navy,
     desc: 'Girls Gymnastics and Boys Sports Camps with full-day activities including gymnastics, trampolines, tumbling, arts & crafts, and more. Weekly themed experiences your kids will talk about all year.',
     pricing: [
       { label: 'Members',      val: '$65/day  ·  $310/week' },
@@ -18,7 +18,7 @@ const camps = [
   {
     title: 'School Days Off & Holiday Camps',
     sub: 'Thanksgiving · Winter Break · Spring Break',
-    img: 'https://images.unsplash.com/photo-1546483875-ad9014c88eba?auto=format&fit=crop&w=700&q=80',
+    color: C.red,
     desc: 'When school is out, TAG USA keeps your athlete active and engaged. Full-day program packed with gymnastics, dodgeball, inflatables, basketball, color war, soccer, ninja courses, and more.',
     pricing: [
       { label: 'Members',     val: '$65/day  ·  $310/week' },
@@ -57,20 +57,13 @@ export default function Camps() {
       <div style={{ maxWidth: 1100, margin: '0 auto', padding: '72px 24px' }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 48 }}>
           {camps.map((camp, i) => (
-            <div key={i} className="two-col" style={{
-              display: 'flex',
-              flexDirection: i % 2 === 0 ? 'row' : 'row-reverse',
-              gap: 0,
+            <div key={i} style={{
               boxShadow: '0 4px 24px rgba(0,0,0,0.08)',
               overflow: 'hidden',
             }}>
-              {/* Photo */}
-              <div className="photo-card" style={{ flex: '0 0 45%', minHeight: 320 }}>
-                <img src={camp.img} alt={camp.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-              </div>
+              <div style={{ background: camp.color, height: 8 }} />
               {/* Content */}
               <div style={{
-                flex: 1,
                 padding: '40px 40px',
                 background: '#fff',
                 display: 'flex',

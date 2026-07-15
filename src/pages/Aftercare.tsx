@@ -1,7 +1,7 @@
 import PageHero from '../components/PageHero'
 import { C } from '../constants'
 
-const HERO = 'https://images.unsplash.com/photo-1546483875-ad9014c88eba?auto=format&fit=crop&w=1600&q=85'
+const HERO = '/Screenshot_2026-05-11_at_2.13.17_PM.png'
 
 const schedule = [
   { time: '2:00pm',       label: 'Van pickup from school' },
@@ -86,14 +86,6 @@ export default function Aftercare() {
 
           {/* Right */}
           <div style={{ flexShrink: 0, width: 320 }}>
-            <div className="photo-card" style={{ height: 280, marginBottom: 16, boxShadow: '0 8px 32px rgba(0,0,0,0.1)' }}>
-              <img
-                src="https://images.unsplash.com/photo-1571019613576-2b22c76fd955?auto=format&fit=crop&w=600&q=80"
-                alt="Aftercare program"
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-              />
-            </div>
-
             <div style={{ background: C.red, padding: 24, marginBottom: 16 }}>
               <div style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 900, fontSize: '1.1rem', color: '#fff', marginBottom: 6, letterSpacing: 0.5 }}>
                 EARLY REGISTRATION DISCOUNT

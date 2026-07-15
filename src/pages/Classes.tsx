@@ -1,7 +1,7 @@
 import PageHero from '../components/PageHero'
 import { C } from '../constants'
 
-const HERO = 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1600&q=85'
+const HERO = '/Screenshot_2026-05-11_at_2.13.17_PM.png'
 
 const classList = [
   {
@@ -9,7 +9,6 @@ const classList = [
     age: '6 weeks to walking',
     tag: 'FREE',
     color: C.red,
-    img: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=600&q=80',
     desc: 'A gentle, FREE introduction to movement for babies and their moms. Soft mats, sensory play, and early movement development in a nurturing environment.',
   },
   {
@@ -17,7 +16,6 @@ const classList = [
     age: 'Age 1',
     tag: 'Beginner',
     color: C.navy,
-    img: 'https://images.unsplash.com/photo-1509515837298-2c67a3933321?auto=format&fit=crop&w=600&q=80',
     desc: 'Parent-assisted class focused on fundamental movement skills through games, stretching, and basic gymnastics activities in a fun, social setting.',
   },
   {
@@ -25,96 +23,84 @@ const classList = [
     age: 'Ages 1.5–2 yrs',
     tag: 'Beginner',
     color: C.red,
-    img: 'https://images.unsplash.com/photo-1540479859555-17af45c78602?auto=format&fit=crop&w=600&q=80',
-    desc: 'Beginning gymnastics movements with parent assistance. Age-appropriate activities that build coordination, balance, and confidence.',
+desc: 'Beginning gymnastics movements with parent assistance. Age-appropriate activities that build coordination, balance, and confidence.',
   },
   {
     name: 'Preschool Gymnastics',
     age: 'Ages 3–4 yrs',
     tag: 'Beginner',
     color: C.navy,
-    img: 'https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&w=600&q=80',
-    desc: 'Basic gymnastics skills on floor, beam, bars, and trampoline. A structured class designed specifically for preschool development and coordination.',
+desc: 'Basic gymnastics skills on floor, beam, bars, and trampoline. A structured class designed specifically for preschool development and coordination.',
   },
   {
     name: 'Girls Beginner Intro',
     age: 'Age 4–5',
     tag: 'Beginner',
     color: C.red,
-    img: 'https://images.unsplash.com/photo-1571019613576-2b22c76fd955?auto=format&fit=crop&w=600&q=80',
-    desc: 'Introduction to all four gymnastics events: vault, bars, beam, and floor. The perfect starting point for young athletes discovering the sport.',
+desc: 'Introduction to all four gymnastics events: vault, bars, beam, and floor. The perfect starting point for young athletes discovering the sport.',
   },
   {
     name: 'Girls Beginner 2',
     age: 'Ages 5–6',
     tag: 'Beginner',
     color: C.navy,
-    img: 'https://images.unsplash.com/photo-1566438480900-0609be27a4be?auto=format&fit=crop&w=600&q=80',
-    desc: 'Building on intro skills with more complex movements, routines, and event-specific technique. Confidence and skill grow together.',
+desc: 'Building on intro skills with more complex movements, routines, and event-specific technique. Confidence and skill grow together.',
   },
   {
     name: 'Girls Beginner 3',
     age: 'Ages 7–9',
     tag: 'Intermediate',
     color: C.red,
-    img: 'https://images.unsplash.com/photo-1547347298-4074fc3086f0?auto=format&fit=crop&w=600&q=80',
-    desc: 'Advanced beginner-level skills preparing athletes for intermediate training. Great for kids who have prior gymnastics experience.',
+desc: 'Advanced beginner-level skills preparing athletes for intermediate training. Great for kids who have prior gymnastics experience.',
   },
   {
     name: 'Boys Beginner Gymnastics',
     age: 'Ages 4–5',
     tag: 'Beginner',
     color: C.navy,
-    img: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=600&q=80',
-    desc: 'Boys-specific gymnastics covering floor, vault, parallel bars, and rings. Strength, coordination, and fun in every class.',
+desc: 'Boys-specific gymnastics covering floor, vault, parallel bars, and rings. Strength, coordination, and fun in every class.',
   },
   {
     name: 'Coed Trampoline & Tumbling',
     age: 'Ages 6–15',
     tag: 'All Levels',
     color: C.red,
-    img: 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?auto=format&fit=crop&w=600&q=80',
-    desc: 'Exciting trampoline and tumbling skills for boys and girls. One of our most popular programs — kids love the energy and progression.',
+desc: 'Exciting trampoline and tumbling skills for boys and girls. One of our most popular programs — kids love the energy and progression.',
   },
   {
     name: 'Girls Intermediate',
     age: 'Various ages',
     tag: 'Intermediate',
     color: C.navy,
-    img: 'https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&w=600&q=80',
-    desc: 'Intermediate level skills across all four events. Athletes develop more refined technique and begin building competitive-quality skills.',
+desc: 'Intermediate level skills across all four events. Athletes develop more refined technique and begin building competitive-quality skills.',
   },
   {
     name: 'Girls Advanced',
     age: 'Various ages',
     tag: 'Advanced',
     color: C.red,
-    img: 'https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?auto=format&fit=crop&w=600&q=80',
-    desc: 'Advanced gymnastics training for high-level skill development and competition preparation. For athletes ready for the next challenge.',
+desc: 'Advanced gymnastics training for high-level skill development and competition preparation. For athletes ready for the next challenge.',
   },
   {
     name: 'Girls Preteam & Junior Team',
     age: 'Selected athletes',
     tag: 'Team Track',
     color: C.navy,
-    img: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=600&q=80',
-    desc: 'Structured team training for athletes showing exceptional potential. Focused development toward competitive team membership.',
+desc: 'Structured team training for athletes showing exceptional potential. Focused development toward competitive team membership.',
   },
   {
     name: 'Power Tumbling',
     age: 'Ages 8–16',
     tag: 'Intermediate / Advanced',
     color: C.red,
-    img: 'https://images.unsplash.com/photo-1594882645126-14ac19a0f2c4?auto=format&fit=crop&w=600&q=80',
-    desc: 'Specialized tumbling on the power tumbling strip. Intermediate and Advanced athletes develop powerful, precise passes for recreation or competition.',
+desc: 'Specialized tumbling on the power tumbling strip. Intermediate and Advanced athletes develop powerful, precise passes for recreation or competition.',
   },
   {
     name: 'Beginner Cheerleading & Stunts',
     age: 'Various ages',
     tag: 'Beginner',
     color: C.navy,
-    img: 'https://images.unsplash.com/photo-1519340333755-56e9c1d04579?auto=format&fit=crop&w=600&q=80',
-    desc: 'Learn cheer fundamentals — routines, jumps, and beginning stunts — in an energetic, team-focused environment. Great for aspiring cheerleaders.',
+desc: 'Learn cheer fundamentals — routines, jumps, and beginning stunts — in an energetic, team-focused environment. Great for aspiring cheerleaders.',
   },
 ]
 
@@ -172,12 +158,10 @@ export default function Classes() {
                 ;(e.currentTarget as HTMLElement).style.boxShadow = '0 2px 16px rgba(0,0,0,0.07)'
               }}
             >
-              {/* Photo */}
-              <div className="photo-card" style={{ height: 200, position: 'relative' }}>
-                <img src={cls.img} alt={cls.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                {/* Tag pill */}
+              {/* Color header */}
+              <div style={{ background: cls.color, height: 8 }} />
+              <div style={{ padding: '14px 22px 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div style={{
-                  position: 'absolute', top: 12, left: 12,
                   background: tagColors[cls.tag] ?? C.navy,
                   padding: '3px 10px',
                   fontFamily: "'Barlow Condensed', sans-serif",
@@ -185,15 +169,10 @@ export default function Classes() {
                   color: '#fff', letterSpacing: 1.5,
                   textTransform: 'uppercase',
                 }}>{cls.tag}</div>
-                {/* Age badge */}
                 <div style={{
-                  position: 'absolute', bottom: 0, right: 0,
-                  background: 'rgba(0,0,0,0.75)',
-                  padding: '4px 10px',
                   fontFamily: "'Barlow Condensed', sans-serif",
                   fontWeight: 600, fontSize: 11,
-                  color: 'rgba(255,255,255,0.85)',
-                  letterSpacing: 0.5,
+                  color: '#999', letterSpacing: 0.5,
                 }}>{cls.age}</div>
               </div>
 

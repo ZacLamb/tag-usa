@@ -26,6 +26,7 @@ export default function Contact() {
     name: '', email: '', phone: '', subject: '', interest: '', message: '',
   })
   const [sent, setSent] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
   const [errors, setErrors] = useState<Partial<FormState>>({})
 
   const validate = () => {
@@ -36,9 +37,20 @@ export default function Contact() {
     return e
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const e = validate()
     if (Object.keys(e).length) { setErrors(e); return }
+    setSubmitting(true)
+    try {
+      await fetch('https://services.leadconnectorhq.com/hooks/GZ5Aqkm4LJmQyNCG8UXi/webhook-trigger/53db77d3-f9de-4dee-8f68-001664b25984', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+    } catch {
+      // fire-and-forget; show success regardless
+    }
+    setSubmitting(false)
     setSent(true)
   }
 
@@ -125,8 +137,8 @@ export default function Contact() {
                   {errors.message && <div style={{ color: C.red, fontSize: 12, marginTop: 3 }}>{errors.message}</div>}
                 </div>
 
-                <button className="btn-red" onClick={handleSubmit} style={{ padding: '14px 44px', fontSize: 16 }}>
-                  Send Message
+                <button className="btn-red" onClick={handleSubmit} disabled={submitting} style={{ padding: '14px 44px', fontSize: 16, opacity: submitting ? 0.7 : 1, cursor: submitting ? 'wait' : 'pointer' }}>
+                  {submitting ? 'Sending…' : 'Send Message'}
                 </button>
               </div>
             )}

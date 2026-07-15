@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import PageHero from '../components/PageHero'
 import { C } from '../constants'
 
-const GYM_HERO = 'https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1600&q=85'
+const GYM_HERO = '/Screenshot_2026-05-11_at_2.13.17_PM.png'
 
 export function TheGym() {
   const { sub } = useParams<{ sub?: string }>()
@@ -20,14 +20,7 @@ export function TheGym() {
       <div style={{ maxWidth: 1100, margin: '0 auto', padding: '72px 24px' }}>
 
         {/* About blurb */}
-        <div className="two-col" style={{ display: 'flex', gap: 56, alignItems: 'center', marginBottom: 72 }}>
-          <div className="photo-card" style={{ flex: '0 0 44%', height: 420, boxShadow: '0 12px 40px rgba(0,0,0,0.1)' }}>
-            <img
-              src="https://images.unsplash.com/photo-1571019613576-2b22c76fd955?auto=format&fit=crop&w=700&q=80"
-              alt="TAG USA Facility"
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-            />
-          </div>
+        <div style={{ marginBottom: 72 }}>
           <div style={{ flex: 1 }}>
             <div style={{ width: 36, height: 2, background: C.red, marginBottom: 16 }} />
             <h2 style={{
@@ -50,18 +43,14 @@ export function TheGym() {
         {/* Feature cards */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 2 }}>
           {[
-            { img: 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?auto=format&fit=crop&w=500&q=80', title: 'World-Class Equipment',  desc: 'Full gymnastics apparatus, multiple trampolines, foam pits, rope swings, tumble tracks, and dedicated training areas for every discipline.' },
-            { img: 'https://images.unsplash.com/photo-1547347298-4074fc3086f0?auto=format&fit=crop&w=500&q=80', title: 'Championship History',   desc: 'Dozens of state qualifiers, national qualifiers, and USA National Team members have trained at TAG USA. Our banners tell the story.' },
-            { img: 'https://images.unsplash.com/photo-1566438480900-0609be27a4be?auto=format&fit=crop&w=500&q=80', title: 'Expert Coaching Staff', desc: 'Our coaches bring decades of competitive and instructional experience, developing athletes from their very first cartwheel to elite competition.' },
-            { img: 'https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&w=500&q=80', title: 'Family Atmosphere',     desc: 'A welcoming, positive, and supportive gym culture where athletes of all ages and levels thrive, belong, and build lifelong friendships.' },
+            { color: C.navy,    title: 'World-Class Equipment',  desc: 'Full gymnastics apparatus, multiple trampolines, foam pits, rope swings, tumble tracks, and dedicated training areas for every discipline.' },
+            { color: '#1a2a5e', title: 'Championship History',   desc: 'Dozens of state qualifiers, national qualifiers, and USA National Team members have trained at TAG USA. Our banners tell the story.' },
+            { color: C.red,     title: 'Expert Coaching Staff', desc: 'Our coaches bring decades of competitive and instructional experience, developing athletes from their very first cartwheel to elite competition.' },
+            { color: '#0a1020', title: 'Family Atmosphere',     desc: 'A welcoming, positive, and supportive gym culture where athletes of all ages and levels thrive, belong, and build lifelong friendships.' },
           ].map((item, i) => (
-            <div key={i} className="photo-card" style={{ position: 'relative', height: 300 }}>
-              <img src={item.img} alt={item.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(10,16,40,0.92) 0%, rgba(10,16,40,0.2) 55%, transparent 100%)' }} />
-              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '24px 22px' }}>
-                <h3 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 800, fontSize: '1.25rem', color: '#fff', marginBottom: 6 }}>{item.title}</h3>
-                <p style={{ fontSize: 12.5, color: 'rgba(255,255,255,0.68)', lineHeight: 1.6 }}>{item.desc}</p>
-              </div>
+            <div key={i} style={{ background: item.color, padding: '32px 22px', minHeight: 200 }}>
+              <h3 style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 800, fontSize: '1.25rem', color: '#fff', marginBottom: 10 }}>{item.title}</h3>
+              <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.68)', lineHeight: 1.6 }}>{item.desc}</p>
             </div>
           ))}
         </div>
@@ -71,7 +60,7 @@ export function TheGym() {
 }
 
 // ── BirthdayParties ───────────────────────────────────────────────────────────
-const BDAY_HERO = 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=1600&q=85'
+const BDAY_HERO = '/Screenshot_2026-05-11_at_2.13.17_PM.png'
 
 export function BirthdayParties() {
   return (
@@ -127,9 +116,6 @@ export function BirthdayParties() {
 
           {/* Right */}
           <div style={{ flexShrink: 0, width: 320 }}>
-            <div className="photo-card" style={{ height: 320, marginBottom: 16, boxShadow: '0 8px 32px rgba(0,0,0,0.1)' }}>
-              <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=600&q=80" alt="Birthday party" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-            </div>
             <div style={{ background: '#f7f8fc', border: '1px solid #eaeaea', padding: 24 }}>
               <div style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 800, fontSize: '0.85rem', color: C.navy, letterSpacing: 2, textTransform: 'uppercase', marginBottom: 16 }}>
                 Party FAQ
@@ -154,7 +140,7 @@ export function BirthdayParties() {
 }
 
 // ── OpenGym ───────────────────────────────────────────────────────────────────
-const OPEN_HERO = 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?auto=format&fit=crop&w=1600&q=85'
+const OPEN_HERO = '/Screenshot_2026-05-11_at_2.13.17_PM.png'
 
 export function OpenGym() {
   return (
@@ -178,9 +164,6 @@ export function OpenGym() {
               Call for Pricing: 954-384-9191
             </a>
           </div>
-          <div className="photo-card" style={{ flex: '0 0 340px', height: 340, boxShadow: '0 12px 40px rgba(0,0,0,0.1)' }}>
-            <img src="https://images.unsplash.com/photo-1594882645126-14ac19a0f2c4?auto=format&fit=crop&w=600&q=80" alt="Open gym" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-          </div>
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 2 }}>
@@ -200,48 +183,19 @@ export function OpenGym() {
   )
 }
 
-// ── Gallery ───────────────────────────────────────────────────────────────────
-const galleryPhotos = [
-  { src: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=500&q=80', label: 'Training' },
-  { src: 'https://images.unsplash.com/photo-1566438480900-0609be27a4be?auto=format&fit=crop&w=500&q=80', label: 'Beam Work' },
-  { src: 'https://images.unsplash.com/photo-1547347298-4074fc3086f0?auto=format&fit=crop&w=500&q=80', label: 'Competition' },
-  { src: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=500&q=80', label: 'Flexibility' },
-  { src: 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?auto=format&fit=crop&w=500&q=80', label: 'Trampoline' },
-  { src: 'https://images.unsplash.com/photo-1571019613576-2b22c76fd955?auto=format&fit=crop&w=500&q=80', label: 'Floor' },
-  { src: 'https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?auto=format&fit=crop&w=500&q=80', label: 'Team' },
-  { src: 'https://images.unsplash.com/photo-1594882645126-14ac19a0f2c4?auto=format&fit=crop&w=500&q=80', label: 'Tumbling' },
-  { src: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=500&q=80', label: 'Performance' },
-  { src: 'https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&w=500&q=80', label: 'Skills' },
-  { src: 'https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&w=500&q=80', label: 'Classes' },
-  { src: 'https://images.unsplash.com/photo-1546483875-ad9014c88eba?auto=format&fit=crop&w=500&q=80', label: 'Athletics' },
-]
-
 export function Gallery() {
   return (
     <div>
-      <PageHero title="Gallery" subtitle="Photos from our classes, teams, camps, and events." image={galleryPhotos[0].src} />
-      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '64px 24px' }}>
-        <p style={{ color: '#777', marginBottom: 36, fontSize: 14, textAlign: 'center' }}>
-          Tag us on Instagram at <strong style={{ color: C.navy }}>#taggymnasticsfl</strong> to be featured!
+      <PageHero title="Gallery" subtitle="Photos from our classes, teams, camps, and events." />
+      <div style={{ maxWidth: 900, margin: '0 auto', padding: '80px 24px', textAlign: 'center' }}>
+        <div style={{ width: 40, height: 2, background: C.red, margin: '0 auto 24px' }} />
+        <p style={{ color: '#777', fontSize: 16, lineHeight: 1.8, marginBottom: 32 }}>
+          Photos coming soon! Tag us on Instagram at{' '}
+          <strong style={{ color: C.navy }}>#taggymnasticsfl</strong> to be featured.
         </p>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 6 }}>
-          {galleryPhotos.map((p, i) => (
-            <div key={i} className="photo-card" style={{ position: 'relative', height: 240 }}>
-              <img src={p.src} alt={p.label} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.45) 0%, transparent 50%)', opacity: 0, transition: 'opacity 0.3s' }}
-                onMouseEnter={e => (e.currentTarget.style.opacity = '1')}
-                onMouseLeave={e => (e.currentTarget.style.opacity = '0')}
-              >
-                <div style={{ position: 'absolute', bottom: 14, left: 0, right: 0, textAlign: 'center', fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 700, fontSize: 13, color: '#fff', letterSpacing: 1.5, textTransform: 'uppercase' }}>{p.label}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div style={{ textAlign: 'center', marginTop: 48 }}>
-          <a href="https://www.instagram.com/" target="_blank" rel="noreferrer" className="btn-navy" style={{ display: 'inline-block' }}>
-            Follow Us on Instagram
-          </a>
-        </div>
+        <a href="https://www.instagram.com/" target="_blank" rel="noreferrer" className="btn-navy" style={{ display: 'inline-block' }}>
+          Follow Us on Instagram
+        </a>
       </div>
     </div>
   )
@@ -250,7 +204,7 @@ export function Gallery() {
 // ── Contact ───────────────────────────────────────────────────────────────────
 import { useState } from 'react'
 
-const CONTACT_HERO = 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1600&q=85'
+const CONTACT_HERO = '/Screenshot_2026-05-11_at_2.13.17_PM.png'
 
 const interests = ['Recreational Classes','Competitive Teams / Tryouts','Sports Camps','Afterschool / Aftercare','Birthday Parties','Open Gym','General Inquiry']
 

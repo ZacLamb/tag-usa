@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom'
 import PageHero from '../components/PageHero'
 import { C } from '../constants'
 
-const HERO = 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=1600&q=85'
+const HERO = '/Screenshot_2026-05-11_at_2.13.17_PM.png'
 
 const teamData: Record<string, { title: string; subtitle: string; desc: string; details: string[] }> = {
   'jo-teams': {
